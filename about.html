@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlueCart Marketplace | About</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    :root {
+      --blue: #1565c0;
+      --blue-dark: #0d47a1;
+      --blue-soft: #eaf3ff;
+      --bg: #f4f8ff;
+      --text: #1f2937;
+      --muted: #64748b;
+      --card: #ffffff;
+      --ok: #16a34a;
+      --shadow: 0 10px 28px rgba(13, 71, 161, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #e7f1ff, #f8fbff 180px, var(--bg));
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 20px 16px 42px;
+    }
+
+    .hero {
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border: 1px solid #dce9ff;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #e7f2ff;
+      color: var(--blue-dark);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.08;
+    }
+
+    .lead {
+      color: var(--muted);
+      margin: 0;
+      max-width: 70ch;
+      line-height: 1.55;
+    }
+
+    .section {
+      margin-top: 18px;
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid #dce9ff;
+      padding: 18px;
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      color: var(--blue-dark);
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .fees {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .fee-card,
+    .feature,
+    .counter {
+      background: #f8fbff;
+      border: 1px solid #d5e5ff;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .fee-card h3,
+    .feature h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: var(--blue-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .fee-value {
+      font-size: 26px;
+      font-weight: 800;
+      margin: 2px 0;
+      color: var(--blue);
+    }
+
+    .hint {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .emphasis {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ok);
+      background: #ecfdf3;
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-top: 10px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      background: var(--blue);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 10px 14px;
+    }
+
+    button.secondary {
+      background: white;
+      border: 1px solid #b9d4ff;
+      color: var(--blue-dark);
+    }
+
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .counter b {
+      display: block;
+      font-size: 22px;
+      color: var(--blue-dark);
+    }
+
+    .counter span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .note {
+      margin-top: 14px;
+      background: var(--blue-soft);
+      border: 1px dashed #93c5fd;
+      padding: 12px;
+      border-radius: 12px;
+      color: #0f172a;
+      line-height: 1.45;
+      display: none;
+    }
+
+    .note.show { display: block; }
+
+    .chat-fab {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      box-shadow: 0 10px 24px rgba(13, 71, 161, 0.28);
+      z-index: 110;
+    }
+
+    .chat-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.48);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 120;
+    }
+
+    .chat-modal.show { display: flex; }
+
+    .chat-card {
+      width: min(100%, 420px);
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid #dce9ff;
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .chat-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .chat-top h3 {
+      margin: 0;
+      color: var(--blue-dark);
+      font-size: 18px;
+    }
+
+    .field { margin-bottom: 10px; }
+
+    .field label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue-dark);
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid #cfe0ff;
+      border-radius: 10px;
+      padding: 10px 11px;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      resize: vertical;
+      min-height: 42px;
+    }
+
+    .chat-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 640px) {
+      .counter-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <div class="brand"><i class="fa-solid fa-cart-shopping"></i> BLUECART MARKETPLACE</div>
+      <h1>Grow your business in a shared marketplace ecosystem.</h1>
+      <p class="lead">
+        BlueCart Marketplace is a digital marketplace built for <b>small business owners</b>,
+        <b>students</b>, and <b>organizations</b>. We help you reach more customers,
+        generate direct sales, and collaborate in one trusted online marketplace.
+      </p>
+      <p class="emphasis"><i class="fa-solid fa-handshake-angle"></i> No commission. Every sale goes directly to the seller.</p>
+      <div class="tools">
+        <button id="toggleMission"><i class="fa-solid fa-circle-info"></i> Why BlueCart?</button>
+        <button id="visitSeller" class="secondary"><i class="fa-solid fa-store"></i> Seller Center</button>
+      </div>
+      <div id="mission" class="note">
+        Our goal is to keep online selling affordable and inclusive. We provide a lightweight marketplace model so emerging sellers can start with low costs and focus on growth.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2><i class="fa-solid fa-receipt"></i> Platform Fees</h2>
+      <div class="fees">
+        <article class="fee-card">
+          <h3><i class="fa-solid fa-user-plus"></i> Registration Fee</h3>
+          <p class="fee-value">₱100</p>
+          <p class="hint">One-time payment to activate your seller profile.</p>
+        </article>
+        <article class="fee-card">
+          <h3><i class="fa-solid fa-tags"></i> Listing Fee</h3>
+          <p class="fee-value">₱15.00</p>
+          <p class="hint">Lifetime listing fee per product published.</p>
+        </article>
+        <article class="fee-card">
+          <h3><i class="fa-solid fa-percent"></i> Sales Commission</h3>
+          <p class="fee-value">₱0.00</p>
+          <p class="hint">No commission fee. Sellers receive sales directly.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2><i class="fa-solid fa-star"></i> Marketplace Features</h2>
+      <div class="feature-grid">
+        <article class="feature">
+          <h3><i class="fa-solid fa-store"></i> Shop Discovery</h3>
+          <p>Buyers can browse active shops and view product cards with photos, stock, and pricing.</p>
+        </article>
+        <article class="feature">
+          <h3><i class="fa-solid fa-cart-plus"></i> Cart & Checkout</h3>
+          <p>Supports full customer info, address fields, pickup/COD modes, and payment method selection.</p>
+        </article>
+        <article class="feature">
+          <h3><i class="fa-brands fa-google-wallet"></i> GCash Support</h3>
+          <p>GCash details and QR payment reference can be shown for faster payment verification.</p>
+        </article>
+        <article class="feature">
+          <h3><i class="fa-solid fa-truck"></i> Courier & Delivery Flow</h3>
+          <p>Courier options and rich order statuses help sellers and buyers track fulfillment progress.</p>
+        </article>
+        <article class="feature">
+          <h3><i class="fa-solid fa-chart-column"></i> Seller Dashboard</h3>
+          <p>Sellers can monitor wallet balance, pending orders, active listings, and order history.</p>
+        </article>
+        <article class="feature">
+          <h3><i class="fa-solid fa-box"></i> Order Tracking</h3>
+          <p>Customers can check order status using an order ID for transparent updates.</p>
+        </article>
+      </div>
+
+      <div class="counter-grid" id="demoStats">
+        <div class="counter"><b id="shops">2</b><span>Active Shops</span></div>
+        <div class="counter"><b id="products">3</b><span>Published Listings</span></div>
+        <div class="counter"><b id="students">2</b><span>Student & Org Users</span></div>
+      </div>
+    </section>
+  </main>
+
+  <button id="chatFab" class="chat-fab" aria-label="Open support form" title="Contact support">
+    <i class="fa-solid fa-comments"></i>
+  </button>
+
+  <div id="chatModal" class="chat-modal" aria-hidden="true">
+    <div class="chat-card" role="dialog" aria-modal="true" aria-labelledby="ticketTitle">
+      <div class="chat-top">
+        <h3 id="ticketTitle"><i class="fa-solid fa-headset"></i> Submit a Ticket</h3>
+        <button id="closeChat" class="secondary" type="button" aria-label="Close form"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="ticketForm">
+        <div class="field">
+          <label for="ticketEmail">Email</label>
+          <input id="ticketEmail" type="email" required placeholder="you@example.com" />
+        </div>
+        <div class="field">
+          <label for="ticketName">Full Name</label>
+          <input id="ticketName" type="text" required placeholder="Juan Dela Cruz" />
+        </div>
+        <div class="field">
+          <label for="ticketConcern">Concern</label>
+          <textarea id="ticketConcern" required placeholder="Describe your concern..."></textarea>
+        </div>
+        <div class="chat-actions">
+          <button class="secondary" type="button" id="cancelChat">Cancel</button>
+          <button type="submit"><i class="fa-solid fa-paper-plane"></i> Send Ticket</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const mission = document.getElementById('mission');
+    document.getElementById('toggleMission').addEventListener('click', () => {
+      mission.classList.toggle('show');
+    });
+
+    document.getElementById('visitSeller').addEventListener('click', () => {
+      alert('Seller Center opens in the main BlueCart app.');
+    });
+
+    function animateCount(el, target, duration = 900) {
+      const start = 0;
+      const startTime = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const value = Math.floor(start + (target - start) * progress);
+        el.textContent = value.toLocaleString();
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    animateCount(document.getElementById('shops'), 2);
+    animateCount(document.getElementById('products'), 2);
+    animateCount(document.getElementById('students'), 2);
+
+    const chatModal = document.getElementById('chatModal');
+    const chatFab = document.getElementById('chatFab');
+    const closeChat = document.getElementById('closeChat');
+    const cancelChat = document.getElementById('cancelChat');
+    const ticketForm = document.getElementById('ticketForm');
+
+    function toggleChat(open) {
+      chatModal.classList.toggle('show', open);
+      chatModal.setAttribute('aria-hidden', String(!open));
+    }
+
+    chatFab.addEventListener('click', () => toggleChat(true));
+    closeChat.addEventListener('click', () => toggleChat(false));
+    cancelChat.addEventListener('click', () => toggleChat(false));
+
+    chatModal.addEventListener('click', (event) => {
+      if (event.target === chatModal) toggleChat(false);
+    });
+
+    ticketForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const email = document.getElementById('ticketEmail').value.trim();
+      const name = document.getElementById('ticketName').value.trim();
+      const concern = document.getElementById('ticketConcern').value.trim();
+      if (!email || !name || !concern) return;
+
+      const body = `Full Name: ${name}\nEmail: ${email}\n\nConcern:\n${concern}`;
+      const link = `mailto:dev.jrce@gmail.com?subject=${encodeURIComponent('New Ticket')}&body=${encodeURIComponent(body)}`;
+      window.location.href = link;
+      ticketForm.reset();
+      toggleChat(false);
+    });
+  </script>
+</body>
+</html>
